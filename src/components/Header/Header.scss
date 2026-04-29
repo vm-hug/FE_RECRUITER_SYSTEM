@@ -1,0 +1,188 @@
+@use "../../styles/variables" as *;
+
+.gradient-text {
+  background: linear-gradient(90deg, #7b2ff7, #f107a3); /* tím -> hồng */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: $shadow-level1;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%; // full width
+    padding: 0 24px; // đúng yêu cầu 24px
+    height: 80px;
+  }
+  &__brand {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $primary;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    margin-right: auto;
+  }
+
+  // Navigation desktop
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin: 0 $spacing-lg;
+
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background: #ffffff; // Nắn trắng hoàn toàn, không trong suốt
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      gap: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 50; // Đảm bảo trên overlay
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+      margin: 0;
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: 16px; // Tăng nhẹ font size trên mobile
+    font-weight: 600;
+    color: $on-surface-variant;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &--active {
+      color: $primary;
+      font-weight: 700;
+      border-bottom: 2px solid $primary;
+    }
+
+    .material-symbols-outlined {
+      font-size: 22px; // Icon to hơn trên mobile
+    }
+  }
+
+  // Actions desktop
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    white-space: nowrap;
+    margin-left: auto;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // Actions trong mobile menu
+  &__actions--mobile {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__login {
+    font-size: 15px;
+    font-weight: 600;
+    color: $on-surface-variant;
+    display: block;
+    padding: 0.5rem 0;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__employer-btn {
+    font-size: 15px;
+    font-weight: 600;
+    background: $gradient-primary;
+    color: white;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-full;
+    box-shadow: $shadow-level1;
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
+    text-align: center;
+    display: block;
+
+    &:hover {
+      box-shadow: $shadow-level2;
+      transform: translateY(-1px);
+    }
+  }
+
+  // Nút toggle mobile
+  &__menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $primary;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  // Overlay phía sau menu
+  &__overlay {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+      position: fixed;
+      inset: 0; // 🔥 thay cho top/left/width/height
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

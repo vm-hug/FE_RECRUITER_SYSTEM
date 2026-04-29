@@ -1,0 +1,177 @@
+@use "sass:map";
+@use "../../styles/variables" as *;
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: $surface-container-lowest;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 480px;
+  background: $surface-container-lowest;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-level1;
+  padding: $spacing-xl;
+  border: 1px solid $surface-container-low;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__brand {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: $gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__title {
+    font-size: map.get($headline-lg, "font-size");
+    font-weight: map.get($headline-lg, "font-weight");
+    color: $primary;
+    margin-bottom: $spacing-xl;
+    text-align: center;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__footer {
+    margin-top: $spacing-lg;
+    text-align: center;
+    color: $on-surface-variant;
+    font-size: map.get($body-md, "font-size");
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.form-label {
+  font-size: map.get($label-md, "font-size");
+  font-weight: map.get($label-md, "font-weight");
+  color: $on-surface-variant;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-link {
+  font-size: map.get($label-sm, "font-size");
+  font-weight: map.get($label-sm, "font-weight");
+  color: $primary;
+  &:hover {
+    color: $primary-container;
+  }
+}
+
+/* KHU VỰC ĐÃ CHỈNH SỬA LỖI TRÀN ICON */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $outline;
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  .form-input {
+    width: 100%;
+    /* Thêm !important để đảm bảo không bị thư viện khác ghi đè */
+    padding: 12px 48px 12px 44px !important;
+    box-sizing: border-box !important;
+    background: $surface-container-lowest;
+    border: 1px solid $outline-variant;
+    border-radius: $radius-default;
+    font-size: map.get($body-md, "font-size");
+    color: $on-surface;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+      color: $outline-variant;
+    }
+    &:focus {
+      border-color: $primary;
+      box-shadow: 0 0 0 1px $primary;
+    }
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $outline;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+/* KẾT THÚC KHU VỰC CHỈNH SỬA */
+
+.submit-btn {
+  margin-top: $spacing-sm;
+  width: 100%;
+  padding: 14px;
+  background: $gradient-primary;
+  color: $on-primary;
+  font-size: map.get($label-md, "font-size");
+  font-weight: map.get($label-md, "font-weight");
+  border: none;
+  border-radius: $radius-full;
+  box-shadow: $shadow-level1;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: $shadow-level2;
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.link {
+  color: $primary;
+  font-weight: 600;
+  margin-left: $spacing-xs;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,104 @@
+@use "sass:map";
+@use "../../styles/variables" as *;
+
+.hero {
+  background: $gradient-primary;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+
+  &__content {
+    max-width: $container-max;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__title {
+    font-size: map.get($headline-xl, "font-size");
+    font-weight: map.get($headline-xl, "font-weight");
+    line-height: map.get($headline-xl, "line-height");
+    letter-spacing: map.get($headline-xl, "letter-spacing");
+    color: $on-primary;
+    margin-bottom: $spacing-sm;
+
+    @media (max-width: 640px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: map.get($body-lg, "font-size");
+    font-weight: map.get($body-lg, "font-weight");
+    line-height: map.get($body-lg, "line-height");
+    color: $inverse-on-surface;
+    opacity: 0.9;
+    margin-bottom: $spacing-xl;
+    max-width: 600px;
+  }
+}
+
+.trending {
+  padding: $spacing-xl 0;
+  background: $surface;
+  overflow: hidden;
+
+  &__heading {
+    font-size: map.get($headline-md, "font-size");
+    font-weight: map.get($headline-md, "font-weight");
+    text-align: center;
+    margin-bottom: $spacing-lg;
+    color: $on-surface;
+  }
+}
+
+// Marquee animation
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &__track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+    padding: 0.5rem 0;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__chip {
+    display: inline-block;
+    background: $primary-fixed;
+    color: $on-primary-fixed;
+    font-size: map.get($label-md, "font-size");
+    font-weight: map.get($label-md, "font-weight");
+    padding: 0.5rem 1rem;
+    border-radius: $radius-full;
+    white-space: nowrap;
+    transition:
+      background 0.2s,
+      box-shadow 0.2s;
+
+    &:hover {
+      background: $primary-fixed-dim;
+      box-shadow: $shadow-level1;
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

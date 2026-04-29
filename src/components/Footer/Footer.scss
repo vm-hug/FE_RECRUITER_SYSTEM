@@ -1,0 +1,60 @@
+@use "../../styles/variables" as *;
+
+.footer {
+  background: #f1f5f9; // slate-50
+  border-top: 1px solid #e2e8f0;
+  padding: 3rem 0;
+
+  &__container {
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $spacing-gutter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: $primary;
+  }
+
+  &__copyright {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 600;
+      opacity: 0.8;
+      transition:
+        opacity 0.2s,
+        color 0.2s;
+
+      &:hover {
+        opacity: 1;
+        color: $primary;
+      }
+    }
+
+    @media (max-width: 640px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+}

@@ -1,0 +1,210 @@
+@use "sass:map";
+@use "../../styles/variables" as *;
+
+.recruiter-register-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center; // Căn giữa ngang
+  align-items: center; // Căn giữa dọc
+  padding: 24px;
+  background: linear-gradient(135deg, #b389f2, #ff84bd);
+  box-sizing: border-box;
+}
+
+$icon-size: 20px;
+$icon-left: 12px;
+$input-padding-left: calc(#{$icon-left} + #{$icon-size} + 12px);
+
+.recruiter-register-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: $surface-container-lowest;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 40px rgba(76, 29, 149, 0.15);
+  border: 1px solid rgba(204, 195, 212, 0.3);
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .decorative-line {
+    height: 6px;
+    width: 100%;
+    background: $gradient-primary;
+  }
+
+  .card-inner {
+    padding: $spacing-xl;
+    box-sizing: border-box;
+  }
+
+  .card-header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
+    .brand-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 1rem;
+      background: $gradient-primary;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 4px 12px rgba(76, 29, 149, 0.2);
+      margin-bottom: $spacing-md;
+
+      .material-symbols-outlined {
+        font-size: 32px;
+      }
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: $on-surface;
+      margin: 0;
+    }
+
+    p {
+      color: $on-surface-variant;
+      font-size: 14px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      label {
+        font-size: 13px;
+        font-weight: 600;
+        color: $on-surface;
+        padding: 4px 0; // Thêm padding cho label như bạn mong muốn
+        span {
+          color: $error;
+        }
+      }
+
+      .input-with-icon {
+        position: relative; // Quan trọng: Để icon tuyệt đối bên trong div này
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .material-symbols-outlined:not(.toggle-visibility *) {
+          position: absolute;
+          left: $icon-left;
+          color: $outline;
+          font-size: $icon-size;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        input {
+          width: 100%; // Input chiếm hết chiều rộng div bao ngoài
+          padding: 12px 48px 12px $input-padding-left;
+          background: $surface;
+          border: 1px solid $outline-variant;
+          border-radius: $radius-default;
+          font-size: 15px;
+          transition: all 0.2s;
+          box-sizing: border-box; // Đảm bảo padding không làm đẩy width ra ngoài
+
+          &:focus {
+            border-color: $primary;
+            outline: none;
+            background: $surface-container-lowest;
+            box-shadow: 0 0 0 1px $primary;
+          }
+        }
+
+        /* Đối với trường không có icon bên trái */
+        &.no-left-icon input {
+          padding-left: 12px;
+        }
+
+        .toggle-visibility {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: $outline;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 3;
+          padding: 0;
+
+          &:hover {
+            color: $primary;
+          }
+
+          .material-symbols-outlined {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .actions {
+      margin-top: $spacing-md;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .btn-submit {
+        height: 56px;
+        width: 100%;
+        background: $gradient-primary;
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: $radius-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 8px 20px rgba(76, 29, 149, 0.2);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(76, 29, 149, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      .switch-link {
+        text-align: center;
+        font-size: 14px;
+        color: $on-surface-variant;
+        margin: 0;
+
+        a {
+          color: $primary;
+          font-weight: 600;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
