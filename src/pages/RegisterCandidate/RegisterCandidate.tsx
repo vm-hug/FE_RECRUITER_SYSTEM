@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"; // Thêm useNavigate
 import "./RegisterCandidate.scss";
 
 import { useCommonData } from "../../hooks/useCommonData";
-import { userServices } from "../../services/userServices";
+import { userServices } from "../../services/userServices.service";
 import type {
   CandidateFormData,
   CandidateRegisterPayload,

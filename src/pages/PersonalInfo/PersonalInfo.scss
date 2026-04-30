@@ -1,0 +1,545 @@
+// PersonalInfo.scss
+@use "../../styles/variables" as *;
+
+.personal-info {
+  background-color: $surface;
+  border-radius: 16px;
+  box-shadow: $shadow-level1;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 24px;
+    border-bottom: 1px solid $outline-variant;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, $secondary-container, $primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary;
+    background: none;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba($primary, 0.08);
+    }
+  }
+
+  &__body {
+    padding: 24px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $surface-container-low;
+    border: 1px solid $outline-variant;
+    border-radius: 12px;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__section {
+    .section__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: $on-surface;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid $outline-variant;
+    }
+
+    .section__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+  }
+}
+
+.profile-card {
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $primary;
+
+    &--placeholder {
+      background: linear-gradient(135deg, $primary-fixed, $secondary-fixed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: $on-primary-fixed;
+      text-transform: uppercase;
+    }
+  }
+
+  &__name {
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: $on-surface;
+      background: linear-gradient(135deg, $primary, $secondary-container);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    p {
+      font-size: 14px;
+      color: $on-surface-variant;
+    }
+  }
+
+  &__cv {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: $surface;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid $outline-variant;
+    color: $primary;
+    font-weight: 600;
+    font-size: 14px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.info-item {
+  &__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: $on-surface-variant;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  &__value {
+    font-size: 15px;
+    color: $on-surface;
+    font-weight: 500;
+  }
+}
+
+.career-objective {
+  margin-top: 16px;
+
+  &__text {
+    font-size: 14px;
+    color: $on-surface-variant;
+    line-height: 1.5;
+    margin-top: 4px;
+    white-space: pre-wrap;
+  }
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.modal {
+  background-color: $surface;
+  border-radius: 16px;
+  box-shadow: $shadow-level3;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  animation: modalFadeIn 0.2s ease-out;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, $secondary-container, $primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__close {
+    padding: 6px;
+    color: $on-surface-variant;
+    transition: color 0.2s;
+    &:hover {
+      color: $error;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 16px 0 24px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      opacity 0.2s;
+
+    &--cancel {
+      background-color: $surface-variant;
+      color: $on-surface-variant;
+      &:hover {
+        background-color: $outline-variant;
+      }
+    }
+
+    &--save {
+      background-color: $primary;
+      color: $on-primary;
+      &:hover {
+        background-color: $primary-container;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.edit-section {
+  background-color: $surface-container-low;
+  border-radius: 12px;
+  padding: 20px;
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: $on-surface;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $outline-variant;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  &__cv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  .avatar-preview {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $outline-variant;
+
+    &--placeholder {
+      background: linear-gradient(135deg, $primary-fixed, $secondary-fixed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $on-primary-fixed;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: $primary;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba($primary, 0.1);
+    }
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: $on-surface-variant;
+    margin: 0;
+  }
+}
+
+.cv-upload {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: $primary;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px dashed $primary;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba($primary, 0.05);
+  }
+
+  span {
+    flex: 1;
+  }
+}
+
+.cv-upload__hint {
+  font-size: 12px;
+  color: $on-surface-variant;
+  margin: 4px 0 0;
+}
+
+.cv-current,
+.cv-new-file {
+  font-size: 13px;
+  color: $on-surface-variant;
+  margin-top: 4px;
+  background-color: $surface;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid $outline-variant;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Form elements in modal
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $on-surface;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 10px 14px;
+    border: 1px solid $outline-variant;
+    border-radius: 10px;
+    background-color: $surface;
+    font-size: 14px;
+    color: $on-surface;
+    font-family: inherit;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+
+    &:disabled {
+      background-color: $surface-variant;
+      opacity: 0.7;
+    }
+
+    &::placeholder {
+      color: $outline;
+      font-size: 13px;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  small {
+    font-size: 12px;
+    color: $on-surface-variant;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.personal-info__cv-viewer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.cv-viewer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: $primary;
+  color: $on-primary;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+  border: none;
+
+  &:hover {
+    background-color: $primary-container;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// Modal xem CV
+.cv-viewer-modal {
+  background-color: $surface;
+  border-radius: 16px;
+  box-shadow: $shadow-level3;
+  width: 90vw;
+  max-width: 900px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalFadeIn 0.2s ease-out;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid $outline-variant;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      background: linear-gradient(135deg, $secondary-container, $primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    background: #f0f0f0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 12px 24px;
+    border-top: 1px solid $outline-variant;
+    background-color: $surface;
+  }
+}
+
+.cv-viewer-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

@@ -52,6 +52,44 @@ $on-error-container: #93000a;
 $background: #f8f9ff;
 $on-background: #121c2a;
 
+$primary: #340075;
+$secondary: #b5005d;
+$tertiary: #f5f3ff;
+$background: #f8f9ff;
+$surface: #ffffff;
+$on-surface: #121c2a;
+$on-surface-variant: #4a4452;
+$indigo-50: #eef2ff;
+$indigo-100: #e0e7ff;
+$emerald-600: #059669;
+$emerald-100: #d1fae5;
+$rose-500: #f43f5e;
+$slate-50: #f8fafc;
+$slate-100: #f1f5f9;
+$slate-200: #e2e8f0;
+$slate-400: #94a3b8;
+$slate-500: #64748b;
+$slate-600: #475569;
+
+$shadow-1: 0px 4px 20px rgba(76, 29, 149, 0.05);
+$shadow-2: 0px 10px 30px rgba(76, 29, 149, 0.1);
+$shadow-3: 0px 20px 40px rgba(76, 29, 149, 0.15);
+
+$font-main: "Manrope", sans-serif;
+$radius: 1rem;
+$radius-sm: 0.5rem;
+$radius-full: 9999px;
+
+@mixin gradient-bg {
+  background: linear-gradient(135deg, $primary, $secondary);
+}
+
+@mixin gradient-text {
+  background: linear-gradient(135deg, $primary, $secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 // Typography
 $font-family: "Manrope", sans-serif;
 

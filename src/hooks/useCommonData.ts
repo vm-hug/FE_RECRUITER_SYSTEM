@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import commonServices from "../services/commonServices";
+import commonServices from "../services/commonServices.service";
 import type {
   EducationLevel,
   Level,

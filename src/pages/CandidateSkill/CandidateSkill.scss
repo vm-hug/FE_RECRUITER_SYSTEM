@@ -1,0 +1,300 @@
+@use "../../styles/variables" as *;
+
+.candidate-skill {
+  background-color: $surface;
+  border-radius: 16px;
+
+  // sửa đúng tên biến
+  box-shadow: $shadow-level1;
+
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  /* ================= HEADER ================= */
+
+  &__header {
+    padding: 24px;
+
+    // sửa đúng biến
+    border-bottom: 1px solid $outline-variant;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $on-surface;
+  }
+
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary;
+
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: rgba($primary, 0.08);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  /* ================= BODY ================= */
+
+  &__body {
+    padding: 24px;
+
+    flex: 1;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    align-content: flex-start;
+  }
+
+  /* ================= TAG ================= */
+
+  &__tag {
+    background-color: $surface-container-low;
+    color: $primary;
+
+    padding: 8px 12px;
+    border-radius: 9999px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $surface-container;
+
+      .candidate-skill__tag-actions {
+        display: flex;
+      }
+    }
+  }
+
+  &__level {
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    font-weight: 500;
+  }
+
+  /* ================= ACTIONS ================= */
+
+  &__tag-actions {
+    display: none;
+
+    align-items: center;
+    gap: 6px;
+
+    margin-left: 4px;
+    padding-left: 8px;
+
+    border-left: 1px solid rgba($primary, 0.2);
+  }
+
+  &__action-btn {
+    border: none;
+    outline: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: 4px;
+    border-radius: 6px;
+
+    color: rgba($primary, 0.6);
+
+    transition: all 0.2s;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+
+    /* Hover nền nhẹ đẹp hơn */
+    &:hover {
+      background-color: rgba($primary, 0.1);
+    }
+
+    /* Edit hover */
+    &.edit:hover {
+      color: $primary;
+    }
+
+    /* Remove hover */
+    &.remove:hover {
+      color: $error;
+      background-color: rgba($error, 0.1);
+    }
+  }
+}
+
+/* Modal styles (tương tự References) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.modal {
+  background-color: $surface;
+  border-radius: 16px;
+  box-shadow: $shadow-level3;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  animation: modalFadeIn 0.2s ease-out;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, $secondary-container, $primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__close {
+    padding: 6px;
+    color: $on-surface-variant;
+    transition: color 0.2s;
+    &:hover {
+      color: $error;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+
+    &--cancel {
+      background-color: $surface-variant;
+      color: $on-surface-variant;
+      &:hover {
+        background-color: $outline-variant;
+      }
+    }
+
+    &--save {
+      background-color: $primary;
+      color: $on-primary;
+      &:hover {
+        background-color: $primary-container;
+      }
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: $on-surface;
+  }
+
+  select,
+  input {
+    padding: 10px 14px;
+    border: 1px solid $outline-variant;
+    border-radius: 10px;
+    background-color: $surface-container-low;
+    font-size: 14px;
+    color: $on-surface;
+    font-family: inherit;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237b7483' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Điều chỉnh đường dẫn theo thư mục thực tế
 import "./LoginCandidate.scss";
 import type { AuthenticationRequest } from "../../types/auth.type";
-import { authService } from "../../services/authServices";
+import { authService } from "../../services/authServices.service";
 import { jwtDecode } from "jwt-decode";
 
 const LoginCandidate = () => {

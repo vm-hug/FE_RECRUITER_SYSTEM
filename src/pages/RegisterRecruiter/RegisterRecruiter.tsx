@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegisterRecruiter.scss";
 import type { RecruiterRegisterPayload } from "../../types/auth.type";
-import { userServices } from "../../services/userServices";
+import { userServices } from "../../services/userServices.service";
 
 const RegisterRecruiter = () => {
   const navigate = useNavigate();
