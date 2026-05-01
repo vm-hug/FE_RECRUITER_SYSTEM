@@ -1,0 +1,525 @@
+/* KHUNG CARD CHÍNH */
+.company-card {
+  width: 100%;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb; /* Viền mỏng thay vì shadow đậm */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-family: "Inter", "Segoe UI", sans-serif;
+
+  &.empty-state {
+    border: 2px dashed #d1d5db;
+    background: #f9fafb;
+    box-shadow: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+
+    &:hover {
+      border-color: #7e22ce;
+      background: #faf5ff;
+
+      .icon-wrapper {
+        background: #7e22ce;
+        color: white;
+      }
+    }
+
+    .empty-content {
+      text-align: center;
+      color: #6b7280;
+
+      .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #e5e7eb;
+        color: #9ca3af;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        transition: all 0.2s;
+      }
+
+      h3 {
+        color: #111827;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      p {
+        font-size: 14px;
+        max-width: 250px;
+      }
+    }
+  }
+
+  /* HEADER */
+  &__header {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .header-titles {
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #111827;
+        margin: 0 0 4px 0;
+      }
+      p {
+        font-size: 13px;
+        color: #6b7280;
+        margin: 0;
+      }
+    }
+
+    .edit-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f3e8ff; /* Nền tím nhạt */
+      color: #7e22ce; /* Chữ màu tím đậm */
+      border: none;
+      padding: 8px 16px;
+      border-radius: 9999px; /* Bo tròn dạng viên thuốc */
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #e9d5ff;
+      }
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: #f3f4f6;
+    margin: 0 32px;
+  }
+
+  /* LAYOUT 2 CỘT */
+  &__body-layout {
+    display: flex;
+    gap: 40px;
+    padding: 32px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+}
+
+/* CỘT TRÁI */
+.layout-left {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .company-logo-box {
+    width: 140px;
+    height: 140px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 8px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .company-name-bold {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+  }
+
+  .company-name-full {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5b21b6; /* Màu tím */
+    margin: 0;
+  }
+
+  .company-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+
+    .tag {
+      background: #eff6ff; /* Nền xanh dương nhạt */
+      color: #1e40af; /* Chữ xanh dương đậm */
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+/* CỘT PHẢI */
+.layout-right {
+  flex: 1;
+  text-align: left; /* Chặn triệt để thuộc tính center rò rỉ từ cha */
+}
+
+.info-grid-modern {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 24px;
+  margin-bottom: 32px;
+  justify-items: start; /* Ép các khối grid nằm sát lề trái */
+
+  .full-width {
+    grid-column: 1 / -1; /* Mở rộng toàn bộ chiều ngang */
+    width: 100%;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ép toàn bộ icon và text căn trái */
+    text-align: left; /* Đảm bảo chữ luôn nằm bên trái */
+    gap: 6px;
+    width: 100%;
+
+    .info-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: #111827;
+      font-weight: 500;
+      word-break: break-word; /* Tránh việc link hoặc email quá dài làm vỡ layout */
+    }
+
+    .link-purple {
+      color: #5b21b6;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* KHUNG MÔ TẢ */
+.description-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Căn trái toàn bộ phần mô tả */
+  text-align: left;
+  gap: 12px;
+  width: 100%;
+
+  .info-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .description-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    width: 100%;
+  }
+}
+
+/* =========================================
+   MODAL FORM STYLES (Giữ nguyên của bạn, chỉ tinh chỉnh input/select)
+   ========================================= */
+.company-modal {
+  max-width: 650px !important;
+
+  .scrollable-body {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .avatar-upload-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+
+    .preview-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      border: 1px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        background: #e2e8f0;
+      }
+    }
+  }
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+    .form-group {
+      flex: 1;
+    }
+  }
+}
+
+/* Định dạng chung cho input, textarea và select trong form */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background-color: white;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: #7e22ce; /* Chuyển outline focus thành màu tím */
+  }
+}
+
+/* =========================================
+   COMPANY PROFILE FORM (THIẾT KẾ ẢNH 2)
+   ========================================= */
+.company-profile-form {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 -8px 0;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+
+    &.required::after {
+      content: " *";
+      color: #ef4444;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+    transition: border-color 0.2s;
+    font-family: inherit;
+
+    &:focus {
+      border-color: #7e22ce; /* Tím focus */
+      box-shadow: 0 0 0 2px rgba(126, 34, 206, 0.15);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  /* AVATAR GROUP */
+  .avatar-group {
+    .avatar-upload-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .avatar-preview-box {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed #d1d5db;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9fafb;
+      cursor: pointer;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .avatar-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .upload-btn-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #f3e8ff;
+        color: #7e22ce;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        width: fit-content;
+        transition: background 0.2s;
+
+        &:hover {
+          background: #e9d5ff;
+        }
+      }
+
+      .remove-avatar-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        color: #ef4444;
+        font-size: 12px;
+        cursor: pointer;
+        width: fit-content;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .avatar-hint {
+        font-size: 12px;
+        color: #9ca3af;
+        margin: 0;
+      }
+    }
+  }
+
+  /* FOOTER */
+  .form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .btn-cancel {
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f3f4f6;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-save {
+    padding: 10px 24px;
+    background: #7e22ce;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #6b21a8;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

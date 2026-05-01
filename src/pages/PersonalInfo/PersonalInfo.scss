@@ -465,7 +465,8 @@
 }
 
 .personal-info__cv-viewer {
-  text-align: center;
+  display: flex;
+  justify-content: flex-end;
   margin-top: 24px;
 }
 
@@ -473,7 +474,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 32px;
+  padding: 12px 30px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 15px;
@@ -482,10 +483,15 @@
   transition:
     background-color 0.2s,
     transform 0.1s;
-  border: none;
+  border: 2px solid transparent;
+  background:
+    linear-gradient($surface, $surface) padding-box,
+    linear-gradient(135deg, #a855f7, #ec4899) border-box;
+
+  color: #c026d3;
 
   &:hover {
-    background-color: $primary-container;
+    opacity: 0.8;
   }
 
   &:active {

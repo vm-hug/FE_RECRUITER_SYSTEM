@@ -4,6 +4,7 @@ import type {
   Location,
   WorkFormat,
 } from "../common.type";
+import type { RecruiterProfile } from "../recruiter/recruiter.type";
 
 export interface Reference {
   id: string;
@@ -56,15 +57,6 @@ export interface CandidateProfile {
   location: Location;
 }
 
-export interface RecruiterProfile {
-  name: string;
-  position: string;
-  company?: {
-    id: string;
-    name: string;
-  };
-}
-
 export interface UserResponse {
   id: string;
   email: string;
@@ -87,9 +79,4 @@ export interface UpdateCandidatePayload {
 
   avatarFile?: File | null;
   cvFile?: File | null;
-}
-
-export interface UpdateRecruiterPayload {
-  name: string;
-  position: string;
 }

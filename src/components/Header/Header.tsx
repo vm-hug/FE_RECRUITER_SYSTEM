@@ -51,7 +51,7 @@ const Header = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <Link
-              to="#"
+              to="/"
               className="header__link header__link--active"
               onClick={closeMenu}
             >
@@ -74,11 +74,11 @@ const Header = () => {
             {/* Actions trong mobile menu */}
             <div className="header__actions--mobile">
               {isLoggedIn ? (
-                <>
+                <Link to="/profile" className="header__user-link">
                   <span className="header__user-greeting">
                     Xin chào, {userEmail}!
                   </span>
-                </>
+                </Link>
               ) : (
                 <>
                   <Link
@@ -110,11 +110,11 @@ const Header = () => {
           {/* Actions – desktop */}
           <div className="header__actions">
             {isLoggedIn ? (
-              <>
+              <Link to="/profile" className="header__user-link">
                 <span className="header__user-greeting">
                   <span className="gradient-text">Xin chào</span>, {userEmail}!
                 </span>
-              </>
+              </Link>
             ) : (
               <Link to="/login" className="header__login">
                 Đăng ký / Đăng Nhập

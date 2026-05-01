@@ -5,10 +5,10 @@ import LoginCandidate from "./pages/LoginCandidate/LoginCandidate";
 import LoginRecruiter from "./pages/LoginRecruiter/LoginRecruiter";
 import RegisterCandidate from "./pages/RegisterCandidate/RegisterCandidate";
 import RegisterRecruiter from "./pages/RegisterRecruiter/RegisterRecruiter";
-import References from "./pages/References/References";
-import CandidateSkill from "./pages/CandidateSkill/CandidateSkill";
-import WorkExperiencePage from "./pages/WorkExperience/WorkExperience";
-import PersonalInfo from "./pages/PersonalInfo/PersonalInfo";
+import CandidateProfile from "./pages/CandidateProfile/CandidateProfile";
+import HeaderOnlyLayout from "./layouts/HeaderOnlyLayout";
+import RecruiterInfo from "./pages/recruiter/RecruiterInfo/RecruiterInfo";
+import RecuiterProfile from "./pages/recruiter/RecuiterProfile/RecuiterProfile";
 
 function App() {
   return (
@@ -17,7 +17,11 @@ function App() {
         {/* Các trang dùng layout chung (có Header, Footer) */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/reference" element={<References />} />
+        </Route>
+
+        {/* Các trang chỉ sử dùng Header */}
+        <Route element={<HeaderOnlyLayout />}>
+          <Route path="/profile" element={<CandidateProfile />} />
         </Route>
 
         {/* Các trang đăng nhập – không dùng layout chung */}
@@ -25,7 +29,7 @@ function App() {
         <Route path="/register" element={<RegisterCandidate />} />
         <Route path="/recruiter/login" element={<LoginRecruiter />} />
         <Route path="/register/recruiter" element={<RegisterRecruiter />} />
-        <Route path="/candidate-skill" element={<PersonalInfo />} />
+        <Route path="/recruiter-info" element={<RecuiterProfile />} />
       </Routes>
     </BrowserRouter>
   );

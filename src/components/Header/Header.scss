@@ -18,6 +18,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: $shadow-level1;
 
+  &__user-link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;

@@ -14,15 +14,11 @@ import type {
   Location,
 } from "../../types/common.type";
 import "./PersonalInfo.scss";
+import Toast from "../../components/Toast/Toast";
 
-// Base URL của backend (có thể cấu hình qua biến môi trường)
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8081";
 
-/**
- * Hàm tạo URL đầy đủ từ path tương đối.
- * Nếu path đã là URL tuyệt đối thì giữ nguyên.
- */
 const getAssetUrl = (path?: string | null) => {
   if (!path) return undefined;
   // Nếu đã là URL tuyệt đối (http/https) thì trả về nguyên
@@ -64,6 +60,17 @@ export default function PersonalInfo() {
   // CV viewer state
   const [cvViewerOpen, setCvViewerOpen] = useState(false);
   const [cvViewerUrl, setCvViewerUrl] = useState<string | null>(null);
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setIsToastVisible(true);
+    setTimeout(() => {
+      setIsToastVisible(false);
+    }, 4000);
+  };
 
   const fetchOptions = useCallback(async () => {
     try {
@@ -181,6 +188,7 @@ export default function PersonalInfo() {
     try {
       const result = await userServices.updateCandidateProfile(payload);
       setData(result);
+      showToast("Cập nhật trang cá nhân thành công!");
       closeModal();
     } catch (error) {
       console.error("Cập nhật thất bại:", error);
@@ -645,6 +653,8 @@ export default function PersonalInfo() {
           </div>
         </div>
       )}
+
+      <Toast message={toastMessage} isVisible={isToastVisible} />
     </section>
   );
 }

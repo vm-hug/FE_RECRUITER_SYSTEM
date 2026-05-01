@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2, X, Briefcase } from "lucide-react";
 import "./WorkExperience.scss";
 import type { WorkExperience } from "../../types/candidate/candidate.type";
 import workExperienceService from "../../services/candidate/workExperience.service";
+import Toast from "../../components/Toast/Toast";
 
 interface ExperienceFormData {
   jobTitle: string;
@@ -29,6 +30,17 @@ export default function WorkExperiencePage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<ExperienceFormData>(emptyForm);
   const [isSaving, setIsSaving] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setIsToastVisible(true);
+    setTimeout(() => {
+      setIsToastVisible(false);
+    }, 4000);
+  };
 
   const fetchExperiences = useCallback(async () => {
     try {
@@ -110,8 +122,6 @@ export default function WorkExperiencePage() {
       description: formData.description.trim(),
     };
 
-    console.log(`PayLoad : ${payload}`);
-
     setIsSaving(true);
     try {
       if (editingId) {
@@ -119,11 +129,13 @@ export default function WorkExperiencePage() {
         setExperiences((prev) =>
           prev.map((e) => (e.id === editingId ? updated : e)),
         );
+        showToast("Cập nhật kinh nghiệm thành công!");
       } else {
         const created = await workExperienceService.create(
           payload as Omit<WorkExperience, "id">,
         );
         setExperiences((prev) => [...prev, created]);
+        showToast("Thêm kinh nghiệm thành công!");
       }
       setIsFormOpen(false);
     } catch (error) {
@@ -337,6 +349,8 @@ export default function WorkExperiencePage() {
           </div>
         </div>
       )}
+
+      <Toast message={toastMessage} isVisible={isToastVisible} />
     </section>
   );
 }

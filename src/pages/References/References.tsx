@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2, X } from "lucide-react";
 import "./References.scss";
 import type { Reference } from "../../types/candidate/candidate.type"; // đường dẫn tùy cấu trúc của bạn
 import referenceService from "../../services/candidate/reference.service";
+import Toast from "../../components/Toast/Toast";
 
 interface ReferenceFormData {
   name: string;
@@ -29,6 +30,17 @@ export default function References() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<ReferenceFormData>(emptyForm);
   const [isSaving, setIsSaving] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setIsToastVisible(true);
+    setTimeout(() => {
+      setIsToastVisible(false);
+    }, 4000);
+  };
 
   // Fetch danh sách khi mount
   const fetchReferences = useCallback(async () => {
@@ -118,12 +130,14 @@ export default function References() {
         setReferences((prev) =>
           prev.map((r) => (r.id === editingId ? updated : r)),
         );
+        showToast("Cập nhật người tham khảo thành công!");
       } else {
         // Thêm mới
         const created = await referenceService.create(
           referenceData as Omit<Reference, "id">,
         );
         setReferences((prev) => [...prev, created]);
+        showToast("Thêm người tham khảo thành công!");
       }
       setIsFormOpen(false);
     } catch (error) {
@@ -322,6 +336,7 @@ export default function References() {
           </div>
         </div>
       )}
+      <Toast message={toastMessage} isVisible={isToastVisible} />
     </section>
   );
 }

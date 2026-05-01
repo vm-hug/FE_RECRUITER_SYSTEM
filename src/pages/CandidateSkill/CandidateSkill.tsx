@@ -7,6 +7,7 @@ import type { Skill } from "../../types/candidate/candidate.type";
 import "./CandidateSkill.scss";
 import candidateSkillService from "../../services/candidate/candidateSkill.service";
 import skillServices from "../../services/candidate/skill.service";
+import Toast from "../../components/Toast/Toast";
 
 export default function CandidateSkillPage() {
   const [skills, setSkills] = useState<CandidateSkill[]>([]);
@@ -18,6 +19,17 @@ export default function CandidateSkillPage() {
     skillLevel: "BEGINNER" as CandidateSkill["skillLevel"],
   });
   const [allSkills, setAllSkills] = useState<Skill[]>([]);
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setIsToastVisible(true);
+    setTimeout(() => {
+      setIsToastVisible(false);
+    }, 4000);
+  };
 
   useEffect(() => {
     fetchSkills();
@@ -85,6 +97,7 @@ export default function CandidateSkillPage() {
         setSkills((prev) =>
           prev.map((s) => (s.id === editingId ? updated : s)),
         );
+        showToast("Cập nhật kỉ năng thành công!");
       } else {
         // Create
         const created = await candidateSkillService.create({
@@ -92,6 +105,7 @@ export default function CandidateSkillPage() {
           skillLevel: formData.skillLevel,
         });
         setSkills((prev) => [...prev, created]);
+        showToast("Thêm kỉ năng thành công!");
       }
       setIsModalOpen(false);
     } catch (error) {
@@ -230,6 +244,7 @@ export default function CandidateSkillPage() {
           </div>
         </div>
       )}
+      <Toast message={toastMessage} isVisible={isToastVisible} />
     </section>
   );
 }

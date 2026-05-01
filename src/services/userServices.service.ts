@@ -5,9 +5,9 @@ import type {
 } from "../types/auth.type";
 import type {
   UpdateCandidatePayload,
-  UpdateRecruiterPayload,
   UserResponse,
 } from "../types/candidate/candidate.type";
+import type { UpdateRecruiterPayload } from "../types/recruiter/recruiter.type";
 
 export const userServices = {
   registerCandidate: (data: CandidateRegisterPayload): Promise<any> => {
