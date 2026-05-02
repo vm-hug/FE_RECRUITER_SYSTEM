@@ -9,6 +9,8 @@ import CandidateProfile from "./pages/CandidateProfile/CandidateProfile";
 import HeaderOnlyLayout from "./layouts/HeaderOnlyLayout";
 import RecruiterInfo from "./pages/recruiter/RecruiterInfo/RecruiterInfo";
 import RecuiterProfile from "./pages/recruiter/RecuiterProfile/RecuiterProfile";
+import Job from "./pages/recruiter/Job/Job";
+import JobDetail from "./pages/recruiter/JobDetail/JobDetail";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         {/* Các trang chỉ sử dùng Header */}
         <Route element={<HeaderOnlyLayout />}>
           <Route path="/profile" element={<CandidateProfile />} />
+          <Route path="/recruiter-info" element={<RecuiterProfile />} />
         </Route>
 
         {/* Các trang đăng nhập – không dùng layout chung */}
@@ -29,7 +32,8 @@ function App() {
         <Route path="/register" element={<RegisterCandidate />} />
         <Route path="/recruiter/login" element={<LoginRecruiter />} />
         <Route path="/register/recruiter" element={<RegisterRecruiter />} />
-        <Route path="/recruiter-info" element={<RecuiterProfile />} />
+        <Route path="/job" element={<Job />} />
+        <Route path="/job/:slug" element={<JobDetail />} />
       </Routes>
     </BrowserRouter>
   );

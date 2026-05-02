@@ -1,0 +1,391 @@
+$primary-color: #720e6a; // Màu gradient nút nộp đơn (Tím đậm)
+$text-dark: #1a1a1a;
+$text-muted: #6b7280;
+$bg-light: #f8f9fb;
+$border-color: #e5e7eb;
+
+.job-detail-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+
+  .loading-state,
+  .error-state {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: $text-muted;
+  }
+
+  // Khối Header (Thông tin chung + Avatar)
+  .header-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+    margin-bottom: 40px;
+
+    .job-logo {
+      width: 120px;
+      height: 120px;
+      background: #eff4fa;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+      }
+    }
+
+    .job-header-info {
+      flex: 1;
+
+      .job-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: $text-dark;
+        margin: 0 0 8px 0;
+      }
+
+      .company-name {
+        font-size: 16px;
+        color: $primary-color;
+        margin: 0 0 16px 0;
+        font-weight: 500;
+      }
+
+      .job-meta {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+
+        .badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-size: 13px;
+          font-weight: 500;
+
+          &.badge-salary {
+            background: #f4f0fd;
+            color: #7b2cbf;
+          }
+          &.badge-location {
+            background: #f3f4f6;
+            color: $text-dark;
+          }
+          &.badge-expire {
+            background: #fef2f2;
+            color: #ef4444;
+          }
+        }
+      }
+
+      .job-actions {
+        display: flex;
+        gap: 16px;
+
+        .btn-apply {
+          background: linear-gradient(90deg, #5b0c52 0%, #a50059 100%);
+          color: #fff;
+          border: none;
+          padding: 12px 28px;
+          border-radius: 30px;
+          font-weight: 600;
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+
+        .btn-save {
+          background: #fff;
+          color: $text-dark;
+          border: 1px solid $border-color;
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-weight: 600;
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #f9fafb;
+          }
+          svg {
+            color: $text-muted;
+          }
+        }
+      }
+    }
+  }
+
+  // Tabs Navigation
+  .tabs-nav {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 24px;
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-muted;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $text-dark;
+      }
+
+      &.active {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+      }
+    }
+  }
+
+  // Content Card (Phần thân dưới)
+  .content-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: $text-dark;
+      margin: 0 0 24px 0;
+    }
+
+    h3.section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 32px 0 16px 0;
+      color: $text-dark;
+    }
+
+    .rich-text {
+      color: #374151;
+      line-height: 1.8;
+      font-size: 15px;
+
+      ul {
+        padding-left: 20px;
+        li {
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    // Tab 1: Chi tiết (Overview)
+    .tab-overview {
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $border-color;
+
+        .info-item {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          .label {
+            font-size: 12px;
+            color: $text-muted;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+
+          .value {
+            font-size: 15px;
+            color: $text-dark;
+            font-weight: 600;
+
+            &.highlight-text {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    // Tab 3: Yêu cầu ứng viên
+    .tab-requirements {
+      .req-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        .req-card {
+          border: 1px solid $border-color;
+          border-radius: 12px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 12px;
+
+          .icon {
+            font-size: 28px;
+            &.icon-purple {
+              color: #8b5cf6;
+            }
+            &.icon-blue {
+              color: #3b82f6;
+            }
+            &.icon-green {
+              color: #10b981;
+            }
+            &.icon-pink {
+              color: #ec4899;
+            }
+            &.icon-yellow {
+              color: #f59e0b;
+            }
+          }
+
+          .req-label {
+            font-size: 14px;
+            color: $text-muted;
+          }
+
+          .req-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+
+            &.badge-purple {
+              background: #f3e8ff;
+              color: #7e22ce;
+            }
+            &.badge-blue {
+              background: #dbeafe;
+              color: #1d4ed8;
+            }
+            &.badge-green {
+              background: #d1fae5;
+              color: #047857;
+            }
+            &.badge-pink {
+              background: #fce7f3;
+              color: #be185d;
+            }
+            &.badge-yellow {
+              background: #fef3c7;
+              color: #b45309;
+            }
+          }
+        }
+      }
+    }
+
+    // Tab 4: Liên hệ
+    .tab-contact {
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .contact-item {
+          background: #f4f6fb; // Màu xanh nhạt theo mockup
+          border-radius: 12px;
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            font-size: 20px;
+          }
+
+          .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .label {
+              font-size: 12px;
+              color: $text-muted;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+
+            .value {
+              font-size: 15px;
+              color: $text-dark;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .job-detail-page {
+    padding: 20px;
+
+    .header-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .job-meta {
+        justify-content: center;
+      }
+      .job-actions {
+        justify-content: center;
+      }
+    }
+
+    .content-card .tab-overview .info-grid {
+      grid-template-columns: 1fr 1fr; // Hiển thị 2 cột trên mobile
+    }
+
+    .content-card .tab-requirements .req-grid {
+      grid-template-columns: 1fr; // Hiển thị 1 cột trên mobile
+    }
+  }
+}

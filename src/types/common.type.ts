@@ -19,3 +19,9 @@ export interface Location {
   name: string;
   description: string;
 }
+
+export interface Profession {
+  id: string;
+  name: string;
+  description: string;
+}

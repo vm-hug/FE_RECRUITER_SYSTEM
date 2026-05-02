@@ -3,6 +3,7 @@ import type {
   EducationLevel,
   Level,
   Location,
+  Profession,
   WorkFormat,
 } from "../types/common.type";
 
@@ -17,6 +18,9 @@ const commonServices = {
 
   getLocations: async (): Promise<Location[]> =>
     await axiosClient.get("/location"),
+
+  getProfession: async (): Promise<Profession[]> =>
+    await axiosClient.get("/profession"),
 };
 
 export default commonServices;
