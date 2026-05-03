@@ -11,6 +11,10 @@ export default defineConfig({
       },
     }),
   ],
+  define: {
+    // Thêm dòng này để fix lỗi ReferenceError: global is not defined của SockJS
+    global: "window",
+  },
   resolve: {
     alias: {
       "@types": path.resolve(__dirname, "src/types"),

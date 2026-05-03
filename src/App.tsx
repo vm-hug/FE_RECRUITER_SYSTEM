@@ -11,6 +11,8 @@ import RecruiterInfo from "./pages/recruiter/RecruiterInfo/RecruiterInfo";
 import RecuiterProfile from "./pages/recruiter/RecuiterProfile/RecuiterProfile";
 import Job from "./pages/recruiter/Job/Job";
 import JobDetail from "./pages/recruiter/JobDetail/JobDetail";
+import ChatRoom from "./pages/chat/ChatRoom";
+import RecruiterInbox from "./pages/recruiter/RecruiterInbox/RecruiterInbox";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route element={<HeaderOnlyLayout />}>
           <Route path="/profile" element={<CandidateProfile />} />
           <Route path="/recruiter-info" element={<RecuiterProfile />} />
+          <Route path="/chat/:conversationId" element={<ChatRoom />} />
+          <Route path="/recruiter/inbox" element={<RecruiterInbox />} />
         </Route>
 
         {/* Các trang đăng nhập – không dùng layout chung */}

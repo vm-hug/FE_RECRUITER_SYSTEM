@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { jobServices } from "../../../services/recruiter/job.service"; // Đổi đường dẫn theo project của bạn
 import type { JobResponse } from "../../../types/recruiter/job.type";
 import {
@@ -13,9 +13,11 @@ import {
   FiMonitor,
   FiStar,
   FiMail,
+  FiMessageCircle,
 } from "react-icons/fi";
 import { MdOutlineSchool } from "react-icons/md";
 import "./JobDetail.scss";
+import { chatServices } from "../../../services/chat/chat.service";
 
 // Utility function (có thể đưa ra file helper chung)
 const API_BASE_URL =
@@ -41,6 +43,8 @@ const JobDetail: React.FC = () => {
   const [job, setJob] = useState<JobResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<string>("overview");
+  const navigate = useNavigate();
+  const [isChatLoading, setIsChatLoading] = useState(false);
 
   useEffect(() => {
     const fetchJobDetail = async () => {
@@ -58,9 +62,25 @@ const JobDetail: React.FC = () => {
         setIsLoading(false);
       }
     };
-
     fetchJobDetail();
   }, [slug]);
+
+  const handleChatClick = async () => {
+    if (!job?.recruiterId) return;
+    try {
+      setIsChatLoading(true);
+      const conversation = await chatServices.createOrGetConversation(
+        job.recruiterId,
+      );
+
+      navigate(`/chat/${conversation.id}`);
+    } catch (error) {
+      console.error("Lỗi khi tạo phòng chat:", error);
+      alert("Không thể mở đoạn chat lúc này.");
+    } finally {
+      setIsChatLoading(false);
+    }
+  };
 
   if (isLoading)
     return <div className="loading-state">Đang tải dữ liệu...</div>;
@@ -103,6 +123,13 @@ const JobDetail: React.FC = () => {
           <div className="job-actions">
             <button className="btn-apply">
               Nộp đơn ngay <FiSend />
+            </button>
+            <button
+              className="btn-chat"
+              onClick={handleChatClick}
+              disabled={isChatLoading}
+            >
+              <FiMessageCircle /> {isChatLoading ? "Đang mở..." : "Chat"}
             </button>
             <button className="btn-save">
               <FiHeart /> Lưu tin
