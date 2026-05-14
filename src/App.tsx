@@ -7,12 +7,13 @@ import RegisterCandidate from "./pages/RegisterCandidate/RegisterCandidate";
 import RegisterRecruiter from "./pages/RegisterRecruiter/RegisterRecruiter";
 import CandidateProfile from "./pages/CandidateProfile/CandidateProfile";
 import HeaderOnlyLayout from "./layouts/HeaderOnlyLayout";
-import RecruiterInfo from "./pages/recruiter/RecruiterInfo/RecruiterInfo";
-import RecuiterProfile from "./pages/recruiter/RecuiterProfile/RecuiterProfile";
-import Job from "./pages/recruiter/Job/Job";
-import JobDetail from "./pages/recruiter/JobDetail/JobDetail";
-import ChatRoom from "./pages/chat/ChatRoom";
-import RecruiterInbox from "./pages/recruiter/RecruiterInbox/RecruiterInbox";
+import RecuiterProfile from "./pages/Recruiter/RecuiterProfile/RecuiterProfile";
+import Job from "./pages/Recruiter/Job/Job";
+import JobDetail from "./pages/Recruiter/JobDetail/JobDetail";
+import ChatRoom from "./pages/Chat/ChatRoom";
+import RecruiterInbox from "./pages/Recruiter/RecruiterInbox/RecruiterInbox";
+import ArticlesPage from "./pages/ArticlesPage/ArticlesPage";
+import ArticleDetailPage from "./pages/ArticlesPage/ArticlesDetail/ArticleDetailPage";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
         <Route path="/register/recruiter" element={<RegisterRecruiter />} />
         <Route path="/job" element={<Job />} />
         <Route path="/job/:slug" element={<JobDetail />} />
+
+        <Route path="/article-page" element={<ArticlesPage />} />
+        <Route path="/articles/:slug" element={<ArticleDetailPage />} />
       </Routes>
     </BrowserRouter>
   );
