@@ -58,7 +58,7 @@ const Header = () => {
               <span className="material-symbols-outlined">work</span>
               Ngành nghề / Địa điểm
             </Link>
-            <Link to="#" className="header__link" onClick={closeMenu}>
+            <Link to="/job" className="header__link" onClick={closeMenu}>
               <span className="material-symbols-outlined">corporate_fare</span>
               Công ty
             </Link>

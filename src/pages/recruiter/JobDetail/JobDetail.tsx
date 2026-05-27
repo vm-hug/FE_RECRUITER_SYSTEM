@@ -18,6 +18,7 @@ import {
 import { MdOutlineSchool } from "react-icons/md";
 import "./JobDetail.scss";
 import { chatServices } from "../../../services/chat/chat.service";
+import ApplyModal from "../ManagerApplication/ApplyModal";
 
 // Utility function (có thể đưa ra file helper chung)
 const API_BASE_URL =
@@ -45,6 +46,7 @@ const JobDetail: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("overview");
   const navigate = useNavigate();
   const [isChatLoading, setIsChatLoading] = useState(false);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchJobDetail = async () => {
@@ -121,7 +123,10 @@ const JobDetail: React.FC = () => {
           </div>
 
           <div className="job-actions">
-            <button className="btn-apply">
+            <button
+              className="btn-apply"
+              onClick={() => setIsApplyModalOpen(true)}
+            >
               Nộp đơn ngay <FiSend />
             </button>
             <button
@@ -276,6 +281,13 @@ const JobDetail: React.FC = () => {
           </div>
         )}
       </div>
+      {isApplyModalOpen && (
+        <ApplyModal
+          jobId={job.id}
+          onClose={() => setIsApplyModalOpen(false)}
+          onSuccess={() => setIsApplyModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
