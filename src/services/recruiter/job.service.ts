@@ -1,9 +1,9 @@
 import axiosClient from "../../api/axiosClient";
+import type { PageResponse } from "../../types/common.type";
 import type {
   JobPayload,
   JobResponse,
   JobSearchParams,
-  PageResponse,
 } from "../../types/recruiter/job.type";
 
 const buildFormData = (data: JobPayload): FormData => {

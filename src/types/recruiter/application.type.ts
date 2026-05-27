@@ -23,3 +23,10 @@ export interface ApplicationResponse {
   appliedAt: string;
   cvUrl: string;
 }
+
+export interface ManagerApplicationSearchRequest {
+  page?: number;
+  size?: number;
+  sortBy?: string;
+  sortDir?: "asc" | "desc";
+}

@@ -1,10 +1,11 @@
 import axiosClient from "../../api/axiosClient";
+import type { PageResponse } from "../../types/common.type";
 import type {
   ApplicationPayload,
   ApplicationResponse,
   ApplicationStatus,
+  ManagerApplicationSearchRequest,
 } from "../../types/recruiter/application.type";
-import type { PageResponse } from "../../types/recruiter/job.type";
 
 export const managerApplicationService = {
   create: (data: ApplicationPayload): Promise<any> => {
@@ -19,14 +20,12 @@ export const managerApplicationService = {
     });
   },
 
-  // 1. Lấy tất cả đơn ứng tuyển (Thường dành cho Admin/Recruiter)
   getAll: (
-    page: number = 0,
-    size: number = 10,
+    params: ManagerApplicationSearchRequest,
   ): Promise<PageResponse<ApplicationResponse>> => {
-    return axiosClient.get(
-      `/manager-applications?page=${page}&size=${size}`,
-    ) as Promise<PageResponse<ApplicationResponse>>;
+    return axiosClient.get("/manager-applications", { params }) as Promise<
+      PageResponse<ApplicationResponse>
+    >;
   },
 
   // 2. Lấy chi tiết đơn ứng tuyển theo ID

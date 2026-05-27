@@ -26,3 +26,11 @@ export interface CompanyPayload {
   establishedYear: number | string;
   avatarUrl?: File | null;
 }
+
+export interface CompanySearchRequest {
+  keyword?: string;
+  page?: number;
+  size?: number;
+  sortBy?: string;
+  sortDir?: "asc" | "desc";
+}

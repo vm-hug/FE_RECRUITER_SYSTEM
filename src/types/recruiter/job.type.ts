@@ -70,12 +70,3 @@ export interface JobSearchParams {
   sortBy?: string;
   sortDir?: string;
 }
-
-// Nếu bạn chưa có PageResponse, định nghĩa dùng chung
-export interface PageResponse<T> {
-  content: T[];
-  totalElements: number;
-  totalPages: number;
-  number: number;
-  size: number;
-}

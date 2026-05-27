@@ -4,7 +4,7 @@ import type {
   ArticleResponse,
   ArticleSearchParams,
 } from "../../types/articles/articles.type";
-import type { PageResponse } from "../../types/recruiter/job.type";
+import type { PageResponse } from "../../types/common.type";
 
 const buildFormData = (data: ArticlePayload): FormData => {
   const formData = new FormData();
