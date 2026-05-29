@@ -1,0 +1,442 @@
+.job-manager-page {
+  font-family: "Inter", sans-serif;
+  .job-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+  }
+
+  .job-modal {
+    width: 700px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    input,
+    textarea,
+    select {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    .preview-image {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .modal-footer {
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+
+    display: flex;
+    justify-content: flex-end;
+
+    .submit-btn {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+  }
+
+  .status-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-actions {
+    display: flex;
+    gap: 4px;
+
+    button {
+      width: 28px;
+      height: 28px;
+
+      border: none;
+      border-radius: 6px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+    }
+
+    .confirm-btn {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .cancel-btn {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+  }
+
+  .job-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  /* Header */
+  .jm-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+
+    .jm-header-text {
+      h1 {
+        font-size: 28px;
+        color: #0f172a;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      p {
+        color: #64748b;
+        font-size: 15px;
+        margin: 0;
+      }
+    }
+
+    /* Nút Create Job Gradient: Nhiều hồng, ít tím */
+    .create-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(
+        135deg,
+        #ec4899 0%,
+        #d946ef 55%,
+        #8b5cf6 100%
+      );
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition:
+        opacity 0.2s,
+        transform 0.1s;
+      box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+
+  /* Toolbar - Căn trái để gần lại ô Search */
+  .jm-toolbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+
+    .search-box {
+      width: 400px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 16px;
+
+      input {
+        border: none;
+        background: transparent;
+        outline: none;
+        width: 100%;
+        font-size: 14px;
+        color: #0f172a;
+        &::placeholder {
+          color: #94a3b8;
+        }
+      }
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 12px;
+
+      .filter-dropdown {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 10px 16px;
+        cursor: pointer;
+        color: #334155;
+        font-size: 14px;
+        transition: background 0.2s;
+
+        &:hover {
+          background: #f8fafc;
+        }
+      }
+    }
+  }
+
+  /* Card & Table */
+  .jm-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .jm-table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th {
+        text-align: left;
+        padding: 16px 24px;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 14px;
+        font-weight: 600;
+        border-bottom: 1px solid #e2e8f0;
+        white-space: nowrap;
+        &.text-right {
+          text-align: right;
+        }
+      }
+
+      td {
+        padding: 20px 24px;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+
+        .regular-text {
+          color: #334155;
+          font-size: 14px;
+        }
+
+        .job-info {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          .company-logo {
+            width: 44px;
+            height: 44px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #334155;
+          }
+
+          .details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            .title {
+              color: #0f172a;
+              font-weight: 600;
+              font-size: 15px;
+            }
+            .meta {
+              color: #64748b;
+              font-size: 13px;
+            }
+          }
+        }
+
+        /* Tùy chỉnh thẻ select để giống badge */
+        .status-select {
+          appearance: none;
+          -webkit-appearance: none;
+          padding: 6px 28px 6px 16px;
+          border-radius: 20px; /* Làm bo tròn thành dạng viên thuốc giống hình ảnh */
+          font-size: 13px;
+          font-weight: 600;
+          border: 1px solid transparent;
+          cursor: pointer;
+          outline: none;
+          font-family: inherit;
+          text-align: center;
+          min-width: 100px;
+
+          /* Icon mũi tên xuống bằng SVG */
+          background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 12px;
+          transition: all 0.2s;
+
+          /* ĐÃ SỬA: Đổi từ &.active thành &.open khớp với job.jobStatus.toLowerCase() */
+          &.open {
+            background-color: #d1fae5;
+            color: #059669;
+          }
+
+          /* ĐÃ SỬA: Sắc nét màu hồng/đỏ nhạt cho trạng thái CLOSED như trong ảnh thiết kế */
+          &.closed {
+            background-color: #fee2e2;
+            color: #dc2626;
+          }
+
+          &.draft {
+            background-color: #f1f5f9;
+            color: #475569;
+          }
+
+          &:hover {
+            filter: brightness(0.96);
+          }
+
+          option {
+            background-color: #ffffff;
+            color: #334155;
+          }
+        }
+
+        /* Action Buttons Hover Effects */
+        .action-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 8px;
+
+          .icon-btn {
+            background: #f1f5f9;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s;
+
+            &.view-btn:hover {
+              border-color: #10b981;
+              color: #10b981;
+              background: #ecfdf5;
+            }
+            &.edit-btn:hover {
+              border-color: #eab308;
+              color: #eab308;
+              background: #fefce8;
+            }
+            &.delete-btn:hover {
+              border-color: #ef4444;
+              color: #ef4444;
+              background: #fef2f2;
+            }
+          }
+        }
+      }
+    }
+
+    /* Pagination */
+    .jm-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-top: 1px solid #e2e8f0;
+
+      .showing-text {
+        color: #64748b;
+        font-size: 14px;
+        strong {
+          color: #0f172a;
+          font-weight: 600;
+        }
+      }
+
+      .page-controls {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .page-btn {
+          width: 32px;
+          height: 32px;
+          border: none;
+          background: transparent;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #475569;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 500;
+          transition: all 0.2s;
+
+          &:hover:not(.active) {
+            background: #f1f5f9;
+          }
+          &.active {
+            background: #fdf4ff;
+            color: #d946ef;
+            font-weight: 600;
+          }
+        }
+
+        .dots {
+          color: #94a3b8;
+          padding: 0 4px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

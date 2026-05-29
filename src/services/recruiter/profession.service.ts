@@ -26,7 +26,7 @@ export const professionServices = {
   getAll: (
     params: ProfessionSearch,
   ): Promise<PageResponse<ProfessionResponse>> => {
-    return axiosClient.get("/profession", { params }) as Promise<
+    return axiosClient.get("/profession/search", { params }) as Promise<
       PageResponse<ProfessionResponse>
     >;
   },

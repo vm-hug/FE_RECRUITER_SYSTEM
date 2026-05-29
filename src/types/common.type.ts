@@ -32,5 +32,6 @@ export interface PageResponse<T> {
   totalElements: number;
   totalPages: number;
   number: number;
+  page: number;
   size: number;
 }

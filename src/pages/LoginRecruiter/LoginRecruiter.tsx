@@ -42,7 +42,7 @@ const LoginRecruiter = () => {
           decodedToken.scope.includes("ROLE_RECRUITER")
         ) {
           localStorage.setItem("access_token", token);
-          navigate("/");
+          navigate("/dashboard-recruiter");
         } else {
           setError(
             "Truy cập bị từ chối! Email này không phải là tài khoản Nhà tuyển dụng.",

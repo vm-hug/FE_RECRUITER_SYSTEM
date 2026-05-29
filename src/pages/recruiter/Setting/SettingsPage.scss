@@ -1,0 +1,244 @@
+.settings-page {
+  font-family: "Inter", sans-serif;
+  color: #0f172a;
+  max-width: 1200px;
+
+  /* Header */
+  .sp-header {
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+
+  /* Layout Container */
+  .sp-container {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  /* Left Sidebar */
+  .sp-sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+
+    .sp-menu {
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
+      gap: 8px;
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border: none;
+        background: transparent;
+        border-radius: 8px;
+        color: #475569;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.2s;
+
+        &:hover {
+          background: #f8fafc;
+          color: #0f172a;
+        }
+
+        &.active {
+          color: #0f172a;
+          font-weight: 600;
+          /* Có thể thêm background nhẹ nếu muốn nổi bật hơn */
+          // background: #f1f5f9;
+        }
+      }
+    }
+
+    .sp-sidebar-footer {
+      margin-top: auto;
+      padding: 0 24px;
+
+      .divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 24px 0;
+      }
+
+      .version-info {
+        color: #64748b;
+        font-size: 13px;
+        margin-bottom: 24px;
+      }
+
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #dc2626; /* Màu đỏ */
+        background: transparent;
+        border: none;
+        padding: 0;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #b91c1c;
+        }
+      }
+    }
+  }
+
+  /* Right Content */
+  .sp-content {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+
+    .section-header {
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 8px;
+        margin-top: 0;
+      }
+
+      p {
+        color: #64748b;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 24px 0 32px 0;
+    }
+
+    .password-form {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+          font-size: 14px;
+          font-weight: 600;
+          color: #1e293b;
+        }
+
+        input {
+          padding: 12px 16px;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
+          font-size: 14px;
+          color: #0f172a;
+          background: #f8fafc; /* Nền xám rất nhạt giống thiết kế */
+          outline: none;
+          transition: all 0.2s;
+
+          &::placeholder {
+            color: #94a3b8;
+          }
+
+          &:focus {
+            border-color: #6b21a8; /* Viền tím khi focus */
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.1);
+          }
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 8px;
+
+        .submit-btn {
+          background: #6b21a8; /* Màu tím đặc trưng */
+          color: #ffffff;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &:hover {
+            background: #581c87;
+          }
+        }
+      }
+    }
+
+    /* Fallback UI cho tab Thông báo */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+      color: #64748b;
+
+      h3 {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        color: #334155;
+      }
+      p {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+
+  /* Responsive cơ bản */
+  @media (max-width: 768px) {
+    .sp-container {
+      flex-direction: column;
+    }
+
+    .sp-sidebar {
+      width: 100%;
+      min-height: auto;
+
+      .sp-sidebar-footer {
+        margin-top: 24px;
+      }
+    }
+  }
+}

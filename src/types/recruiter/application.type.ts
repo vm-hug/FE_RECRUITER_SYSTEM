@@ -19,6 +19,8 @@ export interface ApplicationResponse {
   jobId: string;
   jobTitle: string;
   candidateId: string;
+  candidateName: string;
+  candidateUrl: string;
   status: ApplicationStatus;
   appliedAt: string;
   cvUrl: string;
@@ -29,4 +31,6 @@ export interface ManagerApplicationSearchRequest {
   size?: number;
   sortBy?: string;
   sortDir?: "asc" | "desc";
+
+  status?: ApplicationStatus;
 }
