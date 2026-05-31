@@ -20,6 +20,14 @@ import ApplicationManagerPage from "./pages/Recruiter/ApplicationManager/Applica
 import JobManagerPage from "./pages/Recruiter/JobManager/JobManagerPage";
 import ProfessionPage from "./pages/Recruiter/Profession/ProfessionPage";
 import SettingsPage from "./pages/Recruiter/Setting/SettingsPage";
+import AdminLayout from "./layouts/Admin/AdminLayout";
+import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard";
+import AuthorPage from "./pages/Admin/Author/AuthorPage";
+import ArticleManagerPage from "./pages/Admin/Article/ArticleManagerPage";
+import CandidateManagerPage from "./pages/Admin/ManagerCandidate/CandidateManagerPage";
+import RecruiterManagerPage from "./pages/Admin/ManageRecruiter/RecruiterManagerPage";
+import CompanyManagerPage from "./pages/Admin/ManagerCompany/CompanyManagerPage";
+import LoginAdmin from "./pages/Admin/LoginAdmin/LoginAdmin";
 
 function App() {
   return (
@@ -40,6 +48,18 @@ function App() {
           <Route path="/profession" element={<ProfessionPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
+
+        {/* DASHBOARD OF ADMIN */}
+        <Route element={<AdminLayout />}>
+          <Route path="/admin/dashboard-admin" element={<AdminDashboard />} />
+          <Route path="/admin/authors" element={<AuthorPage />} />
+          <Route path="/admin/articles" element={<ArticleManagerPage />} />
+          <Route path="/admin/candidates" element={<CandidateManagerPage />} />
+          <Route path="/admin/companies" element={<CompanyManagerPage />} />
+          <Route path="/admin/recruiters" element={<RecruiterManagerPage />} />
+        </Route>
+
+        <Route path="/admin/login" element={<LoginAdmin />} />
 
         {/* Các trang chỉ sử dùng Header */}
         <Route element={<HeaderOnlyLayout />}>

@@ -1,0 +1,207 @@
+.company-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+
+  .company-detail-modal {
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalScaleOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+    .detail-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+
+      h2 {
+        font-size: 18px;
+        color: #0f172a;
+        margin: 0;
+        font-weight: 700;
+      }
+
+      .close-btn {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+      }
+    }
+
+    .detail-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      /* Top Summary Profile Header styling */
+      .company-profile-summary {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 18px;
+        border-radius: 12px;
+
+        .summary-logo {
+          width: 56px;
+          height: 56px;
+          border-radius: 8px;
+          object-fit: cover;
+          border: 1px solid #e2e8f0;
+        }
+        .summary-logo-fallback {
+          width: 56px;
+          height: 56px;
+          border-radius: 8px;
+          background: #e0f2fe;
+          color: #0284c7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 24px;
+        }
+
+        .summary-text {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          h3 {
+            font-size: 16px;
+            color: #0f172a;
+            margin: 0;
+            font-weight: 700;
+          }
+          .company-size-tag {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+          }
+
+          .website-link {
+            font-size: 13px;
+            color: #6b21a8;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      /* Inner content block fields */
+      .info-block-section {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        .block-title {
+          font-size: 14px;
+          color: #6b21a8;
+          font-weight: 700;
+          margin: 0;
+          border-bottom: 2px solid #faf5ff;
+          padding-bottom: 6px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .fields-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+
+          .field-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            .icon {
+              color: #94a3b8;
+              margin-top: 2px;
+            }
+            .label {
+              font-size: 12px;
+              color: #64748b;
+              font-weight: 500;
+              display: block;
+            }
+            .value {
+              font-size: 14px;
+              color: #1e293b;
+              font-weight: 600;
+              margin: 2px 0 0 0;
+            }
+
+            &.full-width {
+              grid-column: span 2;
+            }
+          }
+        }
+
+        &.description-block {
+          gap: 8px;
+          .description-content {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.6;
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            p {
+              margin: 0;
+              white-space: pre-line;
+            }
+            .no-data {
+              color: #94a3b8;
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes modalScaleOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

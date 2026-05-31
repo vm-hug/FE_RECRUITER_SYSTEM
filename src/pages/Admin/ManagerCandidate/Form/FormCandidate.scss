@@ -1,0 +1,209 @@
+.candidate-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+
+  .candidate-form-modal {
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalScaleOpen 0.25s ease-out;
+
+    .form-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+      h2 {
+        font-size: 18px;
+        color: #0f172a;
+        margin: 0;
+        font-weight: 700;
+      }
+      .close-btn {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+      }
+    }
+
+    .form-loading {
+      padding: 40px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .form-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      /* Profile Avatar Card inside top */
+      .profile-summary-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 16px;
+        border-radius: 10px;
+
+        .summary-avatar {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .summary-avatar-fallback {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: #ede9fe;
+          color: #7c3aed;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 22px;
+        }
+        .summary-details {
+          h3 {
+            font-size: 16px;
+            color: #0f172a;
+            margin: 0 0 4px 0;
+            font-weight: 700;
+          }
+          .badge-status-text {
+            display: inline-block;
+            padding: 2px 10px;
+            background: #e0e7ff;
+            color: #4f46e5;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 12px;
+          }
+        }
+      }
+
+      /* Sections content spacing */
+      .detail-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .section-title {
+          font-size: 14px;
+          color: #7c3aed;
+          font-weight: 700;
+          margin: 0;
+          border-bottom: 2px solid #f5f3ff;
+          padding-bottom: 4px;
+        }
+
+        .info-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .info-item {
+          display: flex;
+          gap: 12px;
+          align-items: flex-start;
+          .icon {
+            color: #94a3b8;
+            margin-top: 2px;
+          }
+          .label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            display: block;
+          }
+          .value {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 600;
+            margin: 2px 0 0 0;
+          }
+        }
+
+        &.text-block {
+          gap: 6px;
+          .block-content {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.5;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 0;
+          }
+        }
+      }
+
+      /* Action CTA Link */
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 12px;
+        border-top: 1px solid #f1f5f9;
+
+        .download-cv-link {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: #7c3aed;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 10px 18px;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 600;
+          transition: background 0.2s;
+          &:hover {
+            background: #6d28d9;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes modalScaleOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
