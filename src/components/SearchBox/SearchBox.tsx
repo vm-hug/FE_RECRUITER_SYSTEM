@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./SearchBox.scss";
 
 const SearchBox = () => {
@@ -30,7 +31,9 @@ const SearchBox = () => {
           expand_more
         </span>
       </div>
-      <button className="searchbox__button">Tìm kiếm</button>
+      <Link to="/job">
+        <button className="searchbox__button">Tìm kiếm</button>
+      </Link>
     </div>
   );
 };

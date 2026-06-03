@@ -1,0 +1,263 @@
+.company-detail-page {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  padding-bottom: 60px;
+
+  .loading-container,
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    font-size: 16px;
+    color: #64748b;
+  }
+
+  .cdp-banner-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    position: relative;
+
+    .cover-image {
+      height: 240px;
+      border-radius: 16px 16px 0 0;
+      background-size: cover;
+      background-position: center;
+      background-color: #cbd5e1;
+    }
+
+    .profile-overlap-card {
+      margin: -60px 24px 0;
+      background: white;
+      border-radius: 12px;
+      padding: 24px 32px;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      z-index: 10;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .profile-main {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex: 1;
+
+        .avatar-wrapper {
+          width: 100px;
+          height: 100px;
+          border-radius: 12px;
+          background: white;
+          padding: 8px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+          flex-shrink: 0;
+
+          .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+          .avatar-fallback {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: #e0f2fe;
+            color: #0284c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+          }
+        }
+
+        .profile-info {
+          h1 {
+            font-size: 26px;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+          }
+
+          .meta-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            .meta-item {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              color: #475569;
+              font-size: 14px;
+              svg {
+                color: #94a3b8;
+              }
+            }
+          }
+        }
+      }
+
+      .profile-actions {
+        .website-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 24px;
+          border-radius: 8px;
+          border: 1px solid #e2e8f0;
+          background: white;
+          color: #7c3aed;
+          font-weight: 600;
+          font-size: 14px;
+          text-decoration: none;
+          transition: all 0.2s;
+          &:hover {
+            background: #faf5ff;
+            border-color: #d8b4fe;
+          }
+        }
+      }
+    }
+  }
+
+  .cdp-content-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 24px;
+      margin-bottom: 24px;
+
+      .card-title {
+        font-size: 18px;
+        color: #0f172a;
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .card-body {
+        &.description-content {
+          color: #475569;
+          font-size: 15px;
+          line-height: 1.7;
+          p {
+            margin: 0;
+            white-space: pre-line;
+          }
+          .no-data {
+            font-style: italic;
+            color: #94a3b8;
+          }
+        }
+
+        &.lists {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .list-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+
+            .icon-wrap {
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+              &.map {
+                background: #f3e8ff;
+                color: #9333ea;
+              }
+              &.mail {
+                background: #fee2e2;
+                color: #dc2626;
+              }
+              &.phone {
+                background: #e0f2fe;
+                color: #0284c7;
+              }
+            }
+
+            .text-wrap {
+              .label {
+                font-size: 13px;
+                color: #64748b;
+                font-weight: 500;
+                display: block;
+                margin-bottom: 4px;
+              }
+              .value {
+                font-size: 14px;
+                color: #0f172a;
+                font-weight: 500;
+                margin: 0;
+                line-height: 1.4;
+              }
+              .link {
+                color: #2563eb;
+                text-decoration: none;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+
+        .business-stats-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+
+          .stat-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            .stat-label {
+              font-size: 12px;
+              color: #64748b;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+            .stat-value {
+              font-size: 16px;
+              color: #0f172a;
+              font-weight: 700;
+              margin: 8px 0 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

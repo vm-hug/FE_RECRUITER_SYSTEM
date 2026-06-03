@@ -133,8 +133,8 @@ const LoginAdmin = () => {
         </form>
 
         <div className="admin-login-card__footer">
-          <Link to="/" className="back-link">
-            ← Quay lại trang người dùng
+          <Link to="/recruiter/login" className="back-link">
+            ← Quay lại trang nhà tuyển dụng
           </Link>
         </div>
       </div>

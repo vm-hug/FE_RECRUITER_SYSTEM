@@ -1,4 +1,9 @@
+import React from "react";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import PopularCategories from "../../components/PopularCategories/PopularCategories";
+import FeaturedJobs from "../../components/FeaturedJobs/FeaturedJobs";
+import TopCompanies from "../../components/TopCompanies/TopCompanies";
+import EmployerCTA from "../../components/EmployerCTA/EmployerCTA";
 import "./Home.scss";
 
 const trendingSkills = [
@@ -14,9 +19,9 @@ const trendingSkills = [
   "Python",
 ];
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <>
+    <div className="home-page">
       {/* Hero Section */}
       <section className="hero">
         <div className="hero__content">
@@ -28,7 +33,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trending Skills Marquee */}
+      {/* Trending Skills */}
       <section className="trending">
         <h1 className="trending__heading">Xu hướng tuyển dụng nổi bật</h1>
         <div className="marquee">
@@ -41,7 +46,13 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </>
+
+      {/* Các Component Thêm Mới */}
+      <PopularCategories />
+      <FeaturedJobs />
+      <TopCompanies />
+      <EmployerCTA />
+    </div>
   );
 };
 

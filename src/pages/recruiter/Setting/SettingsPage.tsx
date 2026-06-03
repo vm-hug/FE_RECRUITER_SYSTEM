@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Lock, Bell, LogOut } from "lucide-react";
 import "./SettingsPage.scss";
+import { authService } from "../../../services/authServices.service";
+import { useNavigate } from "react-router-dom";
 
 const SettingsPage: React.FC = () => {
   // Quản lý tab đang active (ví dụ sau này bạn làm thêm phần Thông báo)
   const [activeTab, setActiveTab] = useState<"security" | "notifications">(
     "security",
   );
+
+  const navigate = useNavigate();
 
   // Quản lý state của form đổi mật khẩu
   const [passwordForm, setPasswordForm] = useState({
@@ -27,6 +31,23 @@ const SettingsPage: React.FC = () => {
     e.preventDefault();
     // Xử lý logic gọi API đổi mật khẩu ở đây
     console.log("Form data:", passwordForm);
+  };
+
+  const handleLogout = async () => {
+    if (window.confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+      try {
+        const token = localStorage.getItem("access_token");
+
+        if (token) {
+          await authService.logout({ token: token });
+        }
+      } catch (error) {
+        console.log("Lổi khi đăng xuất", error);
+      } finally {
+        localStorage.removeItem("access_token");
+        navigate("/recruiter/login");
+      }
+    }
   };
 
   return (
@@ -58,7 +79,7 @@ const SettingsPage: React.FC = () => {
           <div className="sp-sidebar-footer">
             <div className="divider"></div>
             <div className="version-info">Phiên bản 1.0.0</div>
-            <button className="logout-btn">
+            <button className="logout-btn" onClick={handleLogout}>
               <LogOut size={18} /> Đăng xuất
             </button>
           </div>

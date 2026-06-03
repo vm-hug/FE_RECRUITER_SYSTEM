@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Thêm useNavigate để xử lý đăng xuất
+import { Link, useLocation } from "react-router-dom"; // Thêm useLocation
 import "./Header.scss";
 import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<Boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false); // Đổi Boolean thành boolean
   const [userEmail, setUserEmail] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Khởi tạo useLocation để lấy path hiện tại
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -52,29 +55,53 @@ const Header = () => {
           >
             <Link
               to="/"
-              className="header__link header__link--active"
+              className={`header__link ${location.pathname === "/" ? "header__link--active" : ""}`}
               onClick={closeMenu}
             >
               <span className="material-symbols-outlined">work</span>
-              Ngành nghề / Địa điểm
+              Trang chủ
             </Link>
-            <Link to="/job" className="header__link" onClick={closeMenu}>
+            <Link
+              to="/companies"
+              className={`header__link ${location.pathname === "/companies" ? "header__link--active" : ""}`}
+              onClick={closeMenu}
+            >
               <span className="material-symbols-outlined">corporate_fare</span>
               Công ty
             </Link>
-            <Link to="#" className="header__link" onClick={closeMenu}>
-              <span className="material-symbols-outlined">menu_book</span>
-              Cẩm nang việc làm
+            <Link
+              to="/job"
+              className={`header__link ${location.pathname === "/job" ? "header__link--active" : ""}`}
+              onClick={closeMenu}
+            >
+              <span className="material-symbols-outlined">corporate_fare</span>
+              Việc làm
             </Link>
-            <Link to="#" className="header__link" onClick={closeMenu}>
+            <Link
+              to="/article-page"
+              className={`header__link ${location.pathname === "/article-page" ? "header__link--active" : ""}`}
+              onClick={closeMenu}
+            >
+              <span className="material-symbols-outlined">menu_book</span>
+              Cẩm nang Việc làm
+            </Link>
+            <Link
+              to="/ai-cv-score"
+              className={`header__link ${location.pathname === "/ai-cv-score" ? "header__link--active" : ""}`}
+              onClick={closeMenu}
+            >
               <span className="material-symbols-outlined">description</span>
-              Mẫu CV xin việc
+              Chấm điểm CV
             </Link>
 
             {/* Actions trong mobile menu */}
             <div className="header__actions--mobile">
               {isLoggedIn ? (
-                <Link to="/profile" className="header__user-link">
+                <Link
+                  to="/profile"
+                  className="header__user-link"
+                  onClick={closeMenu}
+                >
                   <span className="header__user-greeting">
                     Xin chào, {userEmail}!
                   </span>

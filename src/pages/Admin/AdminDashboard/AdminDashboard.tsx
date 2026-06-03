@@ -99,7 +99,7 @@ const AdminDashboard: React.FC = () => {
       <div className="dashboard-grid top-stats">
         <StatCard
           title="Tổng số ứng viên"
-          value="12,450"
+          value="10"
           trend="12%"
           trendType="up"
           icon={<Users size={24} />}
@@ -108,7 +108,7 @@ const AdminDashboard: React.FC = () => {
         />
         <StatCard
           title="Tổng số công ty"
-          value="3,820"
+          value="10"
           trend="5%"
           trendType="up"
           icon={<Building2 size={24} />}
@@ -117,7 +117,7 @@ const AdminDashboard: React.FC = () => {
         />
         <StatCard
           title="Tin tuyển dụng"
-          value="8,910"
+          value="12"
           trend="-2%"
           trendType="down"
           icon={<Briefcase size={24} />}
@@ -126,7 +126,7 @@ const AdminDashboard: React.FC = () => {
         />
         <StatCard
           title="Lượt ứng tuyển"
-          value="45,200"
+          value="5"
           trend="24%"
           trendType="up"
           icon={<MousePointerClick size={24} />}
@@ -248,7 +248,7 @@ const AdminDashboard: React.FC = () => {
             <FileClock size={24} />
           </div>
           <p>Tin chờ duyệt</p>
-          <h3>145</h3>
+          <h3>10</h3>
         </div>
 
         <div className="card simple-stat">
@@ -256,7 +256,7 @@ const AdminDashboard: React.FC = () => {
             <UserPlus size={24} />
           </div>
           <p>Ứng viên mới</p>
-          <h3>890</h3>
+          <h3>9</h3>
         </div>
 
         <div className="card gradient-stat">

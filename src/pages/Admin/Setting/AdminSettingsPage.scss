@@ -1,0 +1,209 @@
+.admin-settings-page {
+  font-family: "Inter", sans-serif;
+  color: #0f172a;
+  max-width: 900px;
+
+  /* Header */
+  .asp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .asp-header-left {
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #0f172a;
+      }
+      p {
+        color: #64748b;
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #b91c1c; /* Đỏ đậm */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #991b1b;
+      }
+    }
+  }
+
+  /* Cards */
+  .asp-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 24px;
+      border-bottom: 1px solid #f8fafc;
+
+      .icon-purple {
+        color: #7c3aed;
+      }
+      h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        color: #1e293b;
+      }
+    }
+
+    .card-body {
+      padding: 24px;
+
+      /* Input Forms */
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+
+        label {
+          font-size: 13px;
+          font-weight: 600;
+          color: #475569;
+        }
+
+        input {
+          padding: 10px 14px;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 14px;
+          color: #0f172a;
+          outline: none;
+          transition: all 0.2s;
+
+          &:focus {
+            border-color: #7c3aed;
+            background: #ffffff;
+          }
+        }
+      }
+
+      /* Card 1: Account Info */
+      &.account-info {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+
+        .avatar-section {
+          flex-shrink: 0;
+          .admin-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+          }
+        }
+
+        .form-section {
+          flex: 1;
+        }
+      }
+
+      /* Card 2: Password Change */
+      &.password-change {
+        .input-with-icon {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 100%;
+            padding-right: 40px;
+          }
+
+          .toggle-password {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            &:hover {
+              color: #475569;
+            }
+          }
+        }
+
+        .form-row {
+          display: flex;
+          gap: 20px;
+          .half-width {
+            flex: 1;
+          }
+        }
+
+        .form-actions {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 8px;
+
+          .update-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+              background: #f1f5f9;
+              color: #0f172a;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .asp-card .card-body {
+      &.account-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        .form-section {
+          width: 100%;
+        }
+      }
+      &.password-change .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  }
+}

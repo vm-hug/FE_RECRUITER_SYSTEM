@@ -1,0 +1,124 @@
+.featured-jobs {
+  padding: 60px 20px;
+  background-color: #ffffff;
+
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #6b21a8;
+    margin-bottom: 40px;
+  }
+
+  .loading-state,
+  .empty-state {
+    text-align: center;
+    color: #64748b;
+    padding: 40px 0;
+    font-size: 16px;
+  }
+
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .job-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      background: #ffffff;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+
+      &:hover {
+        box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
+        border-color: #d8b4fe;
+      }
+
+      .job-header {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+
+        .company-logo {
+          width: 48px;
+          height: 48px;
+          border-radius: 8px;
+          object-fit: contain;
+          border: 1px solid #f1f5f9;
+        }
+
+        .company-logo-fallback {
+          width: 48px;
+          height: 48px;
+          border-radius: 8px;
+          background: #f3e8ff;
+          color: #9333ea;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+
+        .job-title-group {
+          h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+          }
+          p {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+          }
+        }
+      }
+
+      .job-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+        flex-grow: 1;
+
+        .detail-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          color: #475569;
+
+          span {
+            font-size: 18px;
+            color: #a855f7;
+          }
+        }
+      }
+
+      .apply-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(90deg, #3b0764 0%, #a855f7 100%);
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}

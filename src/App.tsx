@@ -28,6 +28,10 @@ import CandidateManagerPage from "./pages/Admin/ManagerCandidate/CandidateManage
 import RecruiterManagerPage from "./pages/Admin/ManageRecruiter/RecruiterManagerPage";
 import CompanyManagerPage from "./pages/Admin/ManagerCompany/CompanyManagerPage";
 import LoginAdmin from "./pages/Admin/LoginAdmin/LoginAdmin";
+import AICVScoringPage from "./pages/CV_Score/AICVScoringPage";
+import AdminSettingsPage from "./pages/Admin/Setting/AdminSettingsPage";
+import CandidateCompanyPage from "./pages/CompanyCandidate/CandidateCompanyPage";
+import CompanyDetailPage from "./pages/CompanyCandidate/Detail/CompanyDetailPage";
 
 function App() {
   return (
@@ -36,6 +40,13 @@ function App() {
         {/* Các trang dùng layout chung (có Header, Footer) */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/ai-cv-score" element={<AICVScoringPage />} />
+          <Route path="/article-page" element={<ArticlesPage />} />
+          <Route path="/articles/:slug" element={<ArticleDetailPage />} />
+          <Route path="/job" element={<Job />} />
+          <Route path="/job/:slug" element={<JobDetail />} />
+          <Route path="/companies" element={<CandidateCompanyPage />} />
+          <Route path="/companies/:id" element={<CompanyDetailPage />} />
         </Route>
 
         {/* DASHBOARD OF RECRUITER */}
@@ -57,6 +68,7 @@ function App() {
           <Route path="/admin/candidates" element={<CandidateManagerPage />} />
           <Route path="/admin/companies" element={<CompanyManagerPage />} />
           <Route path="/admin/recruiters" element={<RecruiterManagerPage />} />
+          <Route path="/admin/settings" element={<AdminSettingsPage />} />
         </Route>
 
         <Route path="/admin/login" element={<LoginAdmin />} />
@@ -72,11 +84,6 @@ function App() {
         <Route path="/register" element={<RegisterCandidate />} />
         <Route path="/recruiter/login" element={<LoginRecruiter />} />
         <Route path="/register/recruiter" element={<RegisterRecruiter />} />
-        <Route path="/job" element={<Job />} />
-        <Route path="/job/:slug" element={<JobDetail />} />
-
-        <Route path="/article-page" element={<ArticlesPage />} />
-        <Route path="/articles/:slug" element={<ArticleDetailPage />} />
       </Routes>
     </BrowserRouter>
   );

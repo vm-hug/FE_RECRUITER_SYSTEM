@@ -43,6 +43,10 @@ export const companyServices = {
     }) as Promise<PageResponse<CompanyResponse>>;
   },
 
+  getById: async (id: string): Promise<CompanyResponse> => {
+    return axiosClient.get(`/company/${id}`) as Promise<CompanyResponse>;
+  },
+
   getMyCompany: async (): Promise<CompanyResponse> => {
     return axiosClient.get("/company/my-company") as Promise<CompanyResponse>;
   },

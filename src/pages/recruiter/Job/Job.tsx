@@ -104,7 +104,7 @@ const Job: React.FC = () => {
         <h1 className="page-title">
           Tuyển dụng{" "}
           <span className="highlight">{totalElements.toLocaleString()}</span>{" "}
-          việc làm mới nhất năm 2024
+          việc làm mới nhất năm 2026
         </h1>
       </div>
 
