@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
+import { jwtDecode } from "jwt-decode";
 
 import "./ChatRoom.scss";
-
-import { jwtDecode } from "jwt-decode";
 import type { MessageResponse } from "../../types/chat/chat.type";
 import { chatServices } from "../../services/chat/chat.service";
+import { getImageUrl } from "../../helper/loadImage.util";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8081";
@@ -19,9 +19,9 @@ const ChatRoom: React.FC = () => {
   const [stompClient, setStompClient] = useState<Client | null>(null);
 
   const [currentUserEmail, setCurrentUserEmail] = useState<string>("");
-
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Lấy email từ token
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
@@ -36,7 +36,7 @@ const ChatRoom: React.FC = () => {
     }
   }, []);
 
-  // Tự động cuộn xuống cuối khi có tin nhắn mới
+  // Tự động cuộn xuống cuối
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -48,7 +48,7 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     if (!conversationId) return;
 
-    // 1. Fetch tin nhắn cũ qua REST API
+    // 1. Fetch tin nhắn cũ
     const fetchOldMessages = async () => {
       try {
         const oldMessages = await chatServices.getMessages(
@@ -56,7 +56,6 @@ const ChatRoom: React.FC = () => {
           0,
           50,
         );
-        // API thường trả về tin nhắn mới nhất trước (DESC), ta cần đảo ngược lại để hiển thị từ trên xuống
         setMessages(oldMessages.reverse());
       } catch (error) {
         console.error("Lỗi tải tin nhắn cũ:", error);
@@ -64,7 +63,7 @@ const ChatRoom: React.FC = () => {
     };
     fetchOldMessages();
 
-    // 2. Khởi tạo WebSocket kết nối đến backend
+    // 2. Khởi tạo WebSocket
     const token = localStorage.getItem("access_token");
     if (!token) {
       alert("Vui lòng đăng nhập để chat!");
@@ -76,8 +75,6 @@ const ChatRoom: React.FC = () => {
       webSocketFactory: () => socket,
       debug: (str) => console.log(str),
       onConnect: () => {
-        console.log("Đã kết nối STOMP/WebSocket");
-        // Đăng ký nhận tin nhắn từ phòng chat này
         client.subscribe(`/topic/conversation/${conversationId}`, (message) => {
           const newMsg: MessageResponse = JSON.parse(message.body);
           setMessages((prev) => [...prev, newMsg]);
@@ -85,7 +82,6 @@ const ChatRoom: React.FC = () => {
       },
       onStompError: (frame) => {
         console.error("Broker reported error: " + frame.headers["message"]);
-        console.error("Additional details: " + frame.body);
       },
     });
 
@@ -93,7 +89,7 @@ const ChatRoom: React.FC = () => {
     setStompClient(client);
 
     return () => {
-      client.deactivate(); // Ngắt kết nối khi rời trang
+      client.deactivate();
     };
   }, [conversationId]);
 
@@ -107,7 +103,6 @@ const ChatRoom: React.FC = () => {
     )
       return;
 
-    // Gửi tin nhắn qua STOMP
     stompClient.publish({
       destination: "/app/chat.sendMessage",
       body: JSON.stringify({
@@ -119,16 +114,26 @@ const ChatRoom: React.FC = () => {
     setInputText("");
   };
 
+  // Trích xuất tên nhà tuyển dụng từ mảng tin nhắn (người có email khác user hiện tại)
+  const employerName =
+    messages.find((m) => m.senderEmail !== currentUserEmail)?.senderName ||
+    "Đang cập nhật...";
+
   return (
     <div className="chat-room-container">
+      {/* HEADER MỚI */}
       <div className="chat-header">
-        <h2>Phòng Chat Thực Tập / Việc Làm</h2>
-        <p>Mã phòng: {conversationId}</p>
+        <div className="header-info">
+          <h2>Phòng chat với Nhà tuyển dụng - {employerName}</h2>
+          <div className="status-indicator">
+            <span className="dot"></span>
+            <span className="text">Đang hoạt động</span>
+          </div>
+        </div>
       </div>
 
       <div className="chat-messages">
         {messages.map((msg) => {
-          // 4. THAY ĐỔI LOGIC SO SÁNH: So sánh email của tin nhắn với email trong Token
           const isMe = msg.senderEmail === currentUserEmail;
 
           return (
@@ -136,6 +141,22 @@ const ChatRoom: React.FC = () => {
               key={msg.id}
               className={`message-wrapper ${isMe ? "me" : "other"}`}
             >
+              {/* AVATAR CHO NGƯỜI KHÁC (NHÀ TUYỂN DỤNG) */}
+              {!isMe && (
+                <div className="message-avatar">
+                  {msg.senderAvatar ? (
+                    <img
+                      src={getImageUrl(msg.senderAvatar)}
+                      alt={msg.senderName}
+                    />
+                  ) : (
+                    <div className="avatar-fallback">
+                      {msg.senderName?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className={`message-bubble ${isMe ? "me" : "other"}`}>
                 {!isMe && (
                   <div className="message-sender">{msg.senderName}</div>
@@ -160,9 +181,11 @@ const ChatRoom: React.FC = () => {
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Nhập tin nhắn..."
+          placeholder="Viết câu trả lời..."
         />
-        <button type="submit">Gửi</button>
+        <button type="submit">
+          <span className="material-symbols-outlined">send</span>
+        </button>
       </form>
     </div>
   );
